@@ -122,7 +122,7 @@ class Schema(BaseModel):
     allOf: Optional[List["Schema"]] = None
     oneOf: Optional[List["Schema"]] = None
     anyOf: Optional[List["Schema"]] = None
-    not_: Optional["Schema"] = Field(default=None, alias="not")
+    not_: Optional["Schema"] = Field(default=None)
     items: Optional[Union["Schema", List["Schema"]]] = None
     properties: Optional[Dict[str, "Schema"]] = None
     additionalProperties: Optional[Union["Schema", Reference, bool]] = None
@@ -200,7 +200,7 @@ class ParameterBase(BaseModel):
 
 class Parameter(ParameterBase):
     name: str
-    in_: ParameterInType = Field(alias="in")
+    in_: ParameterInType = Field()
 
 
 class Header(ParameterBase):
@@ -299,7 +299,7 @@ class APIKeyIn(Enum):
 
 class APIKey(SecurityBase):
     type_ = Field(SecuritySchemeType.apiKey, alias="type")
-    in_: APIKeyIn = Field(alias="in")
+    in_: APIKeyIn = Field()
     name: str
 
 
